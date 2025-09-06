@@ -1,0 +1,165 @@
+---
+import Header from "../components/Header.astro";
+import Loader from "../components/Preact/Loader";
+import { Toaster } from "../utils/Toaster";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#5488EE" />
+
+		<title>{title}</title>
+		<meta
+			name="description"
+			content="Explore comprehensive weather insights and forecasts with AWEATHI. Stay informed about current conditions, forecasts, and meteorological data, and gain valuable insights into weather patterns and trends."
+		/>
+		<meta
+			name="keywords"
+			content="AWEATHI, Weather App, theavitw, Weather Insights, Meteorology, Weather Forecast, Weather Trends, Climate Data, Weather Information, Weather Tracking, Weather Analysis, Atmospheric Conditions, Weather Updates, Weather Reports, Local Weather, Global Weather, Weather Predictions"
+		/>
+		<meta
+			name="google-site-verification"
+			content="YRAUUyc8TP4QJ1s53KAdLxcON9xifQf33BnLeP-F_5Y"
+		/>
+		<meta name="generator" content={Astro.generator} />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="theavitw" />
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/icons/180.png" />
+		<link rel="canonical" href="https://AWEATHI.netlify.app/" />
+		<link rel="manifest" href="/manifest.json" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lexend&display=swap"
+			rel="stylesheet preload"
+			as="style"
+		/>
+	</head>
+	<body>
+		<!-- Initial Page Loader -->
+		<Loader client:load />
+
+		<Header />
+		<slot />
+
+		<!-- React-Hot-Toast Container -->
+		<Toaster client:load />
+		<!-- <Toaster
+			position="top-center"
+			containerStyle={{
+				top: 65,
+			}}
+			client:load
+		/> -->
+	</body>
+</html>
+
+<style is:global>
+	/* Debuging */
+	/* * {
+		background: #000;
+		border: 1px solid red;
+		outline: 1px solid green;
+	} */
+	/* Debuging */
+
+	:root {
+		--baseClr: #5488ee;
+		--textClr: #fff;
+		--lexend: "Lexend", sans-serif;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		background-color: var(--baseClr);
+		color: var(--textClr);
+		font-family: var(--lexend);
+		overflow-x: hidden;
+		overflow-y: hidden;
+		position: relative;
+	}
+
+	.flex_center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.animate-wind {
+		animation: wind 4s ease infinite both;
+	}
+
+	@keyframes wind {
+		0%,
+		100% {
+			transform: rotate(0deg);
+			animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+		}
+		25% {
+			transform: rotate(-3deg);
+			animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+		}
+		50% {
+			transform: rotate(0deg);
+			animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+		}
+		75% {
+			transform: rotate(3deg);
+			animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+		}
+	}
+
+	/* Disable blue button click highlight */
+	input,
+	button,
+	a,
+	div {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	/* Custom ScrollBar */
+	::-webkit-scrollbar {
+		width: 14px;
+		height: 14px;
+	}
+
+	::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background-color: rgba(255, 255, 255, 0.6);
+		border-radius: 10px;
+		border: 6px solid transparent;
+		background-clip: content-box;
+	}
+</style>
+
+<script is:inline>
+	if ("serviceWorker" in navigator) {
+		window.addEventListener("load", () => {
+			navigator.serviceWorker
+				.register("/serviceWorker.js")
+				.catch((RegErr) => {
+					console.log("SW Registration failed: ", RegErr);
+				});
+		});
+	}
+</script>
