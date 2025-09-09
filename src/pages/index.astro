@@ -14,6 +14,12 @@ const currentYear = new Date().getFullYear();
 <Layout title="AWEATHI | Weather Insights">
 	<main
 		class="grid grid-cols-1 sm:grid-cols-2 gap-3 px-4 overflow-x-hidden pb-4"
+		style = {
+			{
+				zIndex: -1,
+				position: "relative",
+			}
+		}
 	>
 		<WeatherCard />
 		<MiscDetails />

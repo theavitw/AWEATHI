@@ -5,7 +5,7 @@ import SearchBar from "./Preact/SearchBar";
 ---
 
 <header
-	class="flex gap-4 sm:justify-between items-center mx-4 my-2 px-2 py-2 overflow-hidden bg-black/20 backdrop-blur-md rounded-lg"
+	class="flex gap-4 sm:justify-between items-center mx-4 my-2 px-2 py-2 bg-black/20 backdrop-blur-md rounded-lg"
 >
 	<div class="flex_center gap-4">
 		<Image
@@ -21,7 +21,11 @@ import SearchBar from "./Preact/SearchBar";
 		</h1>
 	</div>
 
-	<SearchBar client:load />
+
+	<!-- Make sure SearchBar suggestions are not clipped -->
+	<div class="relative flex-1 overflow-visible zIndex-100">
+		<SearchBar client:load />
+	</div>
 
 	<nav class="hidden sm:flex justify-center items-center gap-4">
 		<a

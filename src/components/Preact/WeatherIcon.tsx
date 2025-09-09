@@ -11,7 +11,7 @@ const WeatherIcon = () => {
     if (isClient && $weather)
         return (
             <div className="self-start">
-                <div className="flex flex-col leading-tight">
+                <div className="flex flex-col leading-tight items-center">
                     <img
                         src={WeatherIcons[$imageCode || "default"]?.src}
                         width={WeatherIcons[$imageCode || "default"]?.width}
