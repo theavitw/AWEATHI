@@ -79,6 +79,7 @@ const { title } = Astro.props;
 		--baseClr: #5488ee;
 		--textClr: #fff;
 		--lexend: "Lexend", sans-serif;
+		--cursor-transition: 2s ease;
 	}
 
 	* {
@@ -94,7 +95,35 @@ const { title } = Astro.props;
 		overflow-x: hidden;
 		overflow-y: hidden;
 		position: relative;
+		cursor: url('/Sun.svg') 16 16, auto;
+		transition: cursor var(--cursor-transition);
 	}
+
+	/* Default cursor for interactive elements */
+	button,
+	input,
+	a,
+	select,
+	li,
+	ul,
+	svg,
+	textarea,
+	[role="button"] {
+		cursor: url('/Sun.svg') 16 16, pointer !important;
+		transition: cursor var(--cursor-transition);
+	}
+
+	/* Larger cursor on hover with smooth transition */
+	button:hover,
+	input:hover,
+	a:hover,
+	select:hover,
+	li:hover,
+	ul:hover,
+	[role="button"]:hover {
+		cursor: url('/Sun_large.svg') 24 24, pointer !important;
+		transition: cursor var(--cursor-transition);
+	} 
 
 	.flex_center {
 		display: flex;
