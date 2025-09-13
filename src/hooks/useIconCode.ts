@@ -4,7 +4,7 @@ import { weather } from "../store/weatherStore";
 interface IconMappingType {
     [key: string]: string
 }
-1240
+
 const IconMapping: IconMappingType = {
     "1000": "113",
     "1003": "116",
@@ -71,9 +71,9 @@ export const useIconCode = async () => {
     }
 }
 
-export const getIconCode = (code: number) => {
-    if (!code) return
+export const getIconCode = (code: number | null | undefined) => {
+    if (!code || typeof code !== 'number') return "default"
 
-    const IconCode = IconMapping[code]
-    return IconCode + "d"
+    const IconCode = IconMapping[code.toString()]
+    return IconCode ? IconCode + "d" : "default"
 }

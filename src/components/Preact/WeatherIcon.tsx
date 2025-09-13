@@ -1,12 +1,20 @@
 import { useStore } from "@nanostores/preact";
+import { useEffect } from "preact/hooks";
 import { WeatherIcons } from "../../assets/icons";
-import { imageCode, imperialUnit, weather } from "../../store/weatherStore";
+import { imageCode, imperialUnit, weather, isDay } from "../../store/weatherStore";
 
 const WeatherIcon = () => {
     const $imageCode = useStore(imageCode) || null
     const $weather = useStore(weather)
     const $imperialUnit = useStore(imperialUnit)
     const isClient = typeof window !== 'undefined';
+
+    // Update day/night state when weather data changes
+    useEffect(() => {
+        if ($weather?.current?.is_day !== undefined) {
+            isDay.set($weather.current.is_day === 1);
+        }
+    }, [$weather?.current?.is_day]);
 
     if (isClient && $weather)
         return (
