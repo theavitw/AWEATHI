@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Loader from "../components/Preact/Loader";
+import DynamicCursor from "../components/Preact/DynamicCursor";
 import { Toaster } from "../utils/Toaster";
 
 interface Props {
@@ -51,6 +52,9 @@ const { title } = Astro.props;
 		<!-- Initial Page Loader -->
 		<Loader client:load />
 
+		<!-- Dynamic Cursor Component -->
+		<DynamicCursor client:load />
+
 		<Header />
 		<slot />
 
@@ -80,6 +84,8 @@ const { title } = Astro.props;
 		--textClr: #fff;
 		--lexend: "Lexend", sans-serif;
 		--cursor-transition: 2s ease;
+		--cursor-url: url('/Moon.svg') 16 16, auto;
+		--cursor-hover-url: url('/Sun_large.svg') 24 24, pointer;
 	}
 
 	* {
@@ -95,7 +101,7 @@ const { title } = Astro.props;
 		overflow-x: hidden;
 		overflow-y: hidden;
 		position: relative;
-		cursor: url('/Sun.svg') 16 16, auto;
+		cursor: var(--cursor-url);
 		transition: cursor var(--cursor-transition);
 	}
 
@@ -109,7 +115,7 @@ const { title } = Astro.props;
 	svg,
 	textarea,
 	[role="button"] {
-		cursor: url('/Sun.svg') 16 16, pointer !important;
+		cursor: var(--cursor-url) !important;
 		transition: cursor var(--cursor-transition);
 	}
 
@@ -121,7 +127,7 @@ const { title } = Astro.props;
 	li:hover,
 	ul:hover,
 	[role="button"]:hover {
-		cursor: url('/Sun_large.svg') 24 24, pointer !important;
+		cursor: var(--cursor-hover-url) !important;
 		transition: cursor var(--cursor-transition);
 	} 
 

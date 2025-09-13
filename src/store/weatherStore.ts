@@ -7,6 +7,9 @@ export const imageCode = atom<string | null>(null)
 
 export const imperialUnit = atom<boolean>(false)
 
+// Add day/night state for cursor management
+export const isDay = atom<boolean>(true)
+
 type ToastType = {
     status: "success" | "error" | "warn",
     message: string,
