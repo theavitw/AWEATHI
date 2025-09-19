@@ -8,9 +8,6 @@ Explore comprehensive weather insights and forecasts with AWEATHI. Stay informed
 
 Check out a live demo of AWEATHI at https://AWEATHI.netlify.app/.
 
-### Preview
-![Portfolio Preview](public/Mockup_Preview.png)
-
 ## Tools and TechStacks used :
 
 <div align="center">
