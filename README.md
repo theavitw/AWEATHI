@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/549e2ddd-1d58-4f2a-89b3-b5e066bb9f0d/deploy-status)](https://app.netlify.com/sites/AWEATHI/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/322def0e-3f80-4127-a79a-87e76bba5478/deploy-status)](https://app.netlify.com/projects/aweathi/deploys)
 ##### Created : 01/09/2025
 
 # AWEATHI - Weather App
