@@ -10,47 +10,29 @@ Check out a live demo of AWEATHI at https://AWEATHI.netlify.app/.
 
 ## Tools and TechStacks used :
 
-<div align="center">
+<div align="center" style = {{ display: "flex", gap : "10px"}} >
       <img
         alt="Astro JS"
         title="Astro JS"
-        width="40px"
-        src="https://raw.githubusercontent.com/theavitw/theavitw.github.io/main/icons/astrojs.svg"
+        width="10%"
+        src="https://icon.icepanel.io/Technology/png-shadow-512/Astro.png"
       />
       <img
         alt="Preact JS"
         title="Preact JS"
-        width="40px"
-        src="https://raw.githubusercontent.com/theavitw/theavitw.github.io/main/icons/preactjs.svg"
+        width="10%"
+        src="https://preactjs.com/branding/logo-text.svg"
       />
       <img 
         alt="Typescript" 
         title="Typescript" 
-        width="40px"
-        src="https://raw.githubusercontent.com/theavitw/theavitw.github.io/main/icons/typescript.svg" 
+        width="10%"
+        src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" 
       />
       <img 
         alt="Tailwind CSS" 
         title="Tailwind CSS" 
-        width="40px"
-        src="https://raw.githubusercontent.com/theavitw/theavitw.github.io/main/icons/tailwind.svg" 
-      />
-      <img 
-        alt="Nanostores" 
-        title="Nanostores" 
-        width="40px"
-        src="https://raw.githubusercontent.com/theavitw/theavitw.github.io/main/icons/nanostores.svg" 
-      />
-      <img 
-        alt="D3 JS" 
-        title="D3 JS" 
-        width="40px"
-        src="https://raw.githubusercontent.com/theavitw/theavitw.github.io/main/icons/d3js.svg" 
-      />
-      <img 
-        alt="API" 
-        title="API" 
-        width="40px"
-        src="https://raw.githubusercontent.com/theavitw/theavitw.github.io/main/icons/database.svg" 
+        width="10%"
+        src="https://img.icons8.com/?size=256&id=4PiNHtUJVbLs&format=png" 
       />
 </div>
