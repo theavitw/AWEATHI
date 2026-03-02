@@ -5,7 +5,7 @@ interface LocationType {
     longitude: string,
 }
 
-const API_KEY = "888eb4dc1e554f84a0b85718230909";
+const API_KEY = "5b50bebbb83545c38ec54228250509";
 const BASE_URL = `https://api.weatherapi.com/v1/forecast.json`
 
 export const FetchWeatherQuery = async (query: string) => {
