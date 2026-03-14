@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'preact/hooks'
+import { useState, useEffect, useRef } from 'preact/hooks'
 import { FetchWeatherQuery, FetchWeatherPosition } from '../../hooks/useFetchWeather'
 import MapPin from '../SVG/MapPin'
 import { toastData, weather } from '../../store/weatherStore'
@@ -7,11 +7,17 @@ import AutocompleteInput from './AutocompleteInput'
 
 const SearchBar = () => {
   const [query, setQuery] = useState("New York, US")
+  const abortControllerRef = useRef<AbortController | null>(null)
 
   const HandleSearch = async (val?: string) => {
     const searchValue = val || query
     if (!searchValue) return
-    const data = await FetchWeatherQuery(searchValue)
+
+    // Abort any previous in-flight request
+    abortControllerRef.current?.abort()
+    abortControllerRef.current = new AbortController()
+
+    const data = await FetchWeatherQuery(searchValue, abortControllerRef.current.signal)
     if (data) {
       weather.set(data)
       useIconCode()
@@ -24,9 +30,15 @@ const SearchBar = () => {
       longitude: position.coords.longitude.toString()
     }
     try {
-      const data = await FetchWeatherPosition(pos)
-      weather.set(data)
-      useIconCode()
+      // Abort any previous in-flight request
+      abortControllerRef.current?.abort()
+      abortControllerRef.current = new AbortController()
+
+      const data = await FetchWeatherPosition(pos, abortControllerRef.current.signal)
+      if (data) {
+        weather.set(data)
+        useIconCode()
+      }
     } catch (error) {
       console.log(error)
     }
@@ -53,6 +65,9 @@ const SearchBar = () => {
   useEffect(() => {
     if (query === "") setQuery("New York, US")
     HandleSearch()
+    return () => {
+      abortControllerRef.current?.abort()
+    }
   }, [])
 
   return (

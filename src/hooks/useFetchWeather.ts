@@ -8,7 +8,7 @@ interface LocationType {
 const API_KEY = "5b50bebbb83545c38ec54228250509";
 const BASE_URL = `https://api.weatherapi.com/v1/forecast.json`
 
-export const FetchWeatherQuery = async (query: string) => {
+export const FetchWeatherQuery = async (query: string, signal?: AbortSignal) => {
     const URL_Params = new URLSearchParams({
         key: API_KEY,
         q: query,
@@ -18,7 +18,7 @@ export const FetchWeatherQuery = async (query: string) => {
     })
 
     try {
-        const res = await fetch(`${BASE_URL}?${URL_Params.toString()}`)
+        const res = await fetch(`${BASE_URL}?${URL_Params.toString()}`, { signal })
         const data = await res.json()
         // console.log("Fetch:", data)
 
@@ -32,11 +32,13 @@ export const FetchWeatherQuery = async (query: string) => {
             throw new Error("Invalid City name!");
         }
     } catch (err) {
+        // AbortError is expected when a newer request cancels this one; ignore silently
+        if (err instanceof Error && err.name === "AbortError") return
         console.log("ERROR:", err)
     }
 }
 
-export const FetchWeatherPosition = async (pos: LocationType) => {
+export const FetchWeatherPosition = async (pos: LocationType, signal?: AbortSignal) => {
     const URL_Params = new URLSearchParams({
         key: API_KEY,
         q: `${pos.latitude},${pos.longitude}`,
@@ -46,7 +48,7 @@ export const FetchWeatherPosition = async (pos: LocationType) => {
     })
 
     try {
-        const res = await fetch(`${BASE_URL}?${URL_Params.toString()}`)
+        const res = await fetch(`${BASE_URL}?${URL_Params.toString()}`, { signal })
         const data = await res.json()
         // console.log("GEO:", data)
 
@@ -60,6 +62,8 @@ export const FetchWeatherPosition = async (pos: LocationType) => {
             throw new Error("Invalid Position coordinates!");
         }
     } catch (err) {
+        // AbortError is expected when a newer request cancels this one; ignore silently
+        if (err instanceof Error && err.name === "AbortError") return
         console.log("ERROR:", err)
     }
 }
